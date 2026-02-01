@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": "Teclado Mecánico RGB",
+    "description": "Edición limitada con switches optimizados.",
+    "code": "TEC001",
+    "price": 850.75,
+    "status": true,
+    "stock": 20,
+    "category": "Periféricos",
+    "thumbnails": [
+      "img1.jpg",
+      "img2.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Mouse Gamer Pro",
+    "description": "16000 DPI, inalámbrico",
+    "code": "MOU001",
+    "price": 32000,
+    "status": true,
+    "stock": 20,
+    "category": "Periféricos",
+    "thumbnails": [
+      "mouse1.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Monitor 24' 144Hz",
+    "description": "Panel IPS, Full HD",
+    "code": "MON001",
+    "price": 185000,
+    "status": true,
+    "stock": 8,
+    "category": "Monitores",
+    "thumbnails": []
+  },
+  {
+    "id": 4,
+    "title": "Auriculares 7.1",
+    "description": "Cancelación de ruido, micrófono",
+    "code": "AUR001",
+    "price": 28000,
+    "status": true,
+    "stock": 12,
+    "category": "Audio",
+    "thumbnails": [
+      "aur.png"
+    ]
+  }
+]
