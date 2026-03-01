@@ -1,22 +1,21 @@
 [
-  {
+    {
     "id": 1,
     "title": "Teclado Mecánico RGB",
-    "description": "Edición limitada con switches optimizados.",
+    "description": "Switches Red, retroiluminación personalizada y layout español.",
     "code": "TEC001",
-    "price": 850.75,
+    "price": 45000,
     "status": true,
-    "stock": 20,
+    "stock": 15,
     "category": "Periféricos",
     "thumbnails": [
-      "img1.jpg",
-      "img2.jpg"
+      "teclado_rgb_1.jpg"
     ]
   },
   {
     "id": 2,
     "title": "Mouse Gamer Pro",
-    "description": "16000 DPI, inalámbrico",
+    "description": "16000 DPI, inalámbrico con sensor óptico.",
     "code": "MOU001",
     "price": 32000,
     "status": true,
@@ -29,18 +28,20 @@
   {
     "id": 3,
     "title": "Monitor 24' 144Hz",
-    "description": "Panel IPS, Full HD",
+    "description": "Panel IPS, Full HD con FreeSync.",
     "code": "MON001",
     "price": 185000,
     "status": true,
     "stock": 8,
     "category": "Monitores",
-    "thumbnails": []
+    "thumbnails": [
+      "monitor_24.png"
+    ]
   },
   {
     "id": 4,
     "title": "Auriculares 7.1",
-    "description": "Cancelación de ruido, micrófono",
+    "description": "Cancelación de ruido, micrófono cardioide.",
     "code": "AUR001",
     "price": 28000,
     "status": true,
@@ -48,6 +49,214 @@
     "category": "Audio",
     "thumbnails": [
       "aur.png"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Placa de Video RTX 4060",
+    "description": "8GB GDDR6, trazado de rayos de 3ra gen.",
+    "code": "GPU001",
+    "price": 450000,
+    "status": true,
+    "stock": 5,
+    "category": "Componentes",
+    "thumbnails": [
+      "gpu_4060.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Memoria RAM 16GB DDR4",
+    "description": "3200MHz con iluminación RGB controlable.",
+    "code": "RAM001",
+    "price": 45000,
+    "status": true,
+    "stock": 25,
+    "category": "Componentes",
+    "thumbnails": [
+      "ram_rgb.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "SSD NVMe 1TB",
+    "description": "PCIe Gen4 x4 de alta velocidad.",
+    "code": "SSD001",
+    "price": 72000,
+    "status": true,
+    "stock": 15,
+    "category": "Almacenamiento",
+    "thumbnails": [
+      "ssd_m2.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Procesador i5-13400",
+    "description": "10 núcleos, ideal para multitarea.",
+    "code": "CPU001",
+    "price": 310000,
+    "status": true,
+    "stock": 10,
+    "category": "Componentes",
+    "thumbnails": [
+      "cpu_i5.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Gabinete Mid-Tower",
+    "description": "Vidrio templado y flujo de aire optimizado.",
+    "code": "GAB001",
+    "price": 55000,
+    "status": true,
+    "stock": 6,
+    "category": "Componentes",
+    "thumbnails": [
+      "gabinete_atx.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Fuente 750W 80+ Gold",
+    "description": "Protección de sobretensión y modular.",
+    "code": "POW001",
+    "price": 95000,
+    "status": true,
+    "stock": 14,
+    "category": "Componentes",
+    "thumbnails": [
+      "psu_750.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Silla Gamer Ergo",
+    "description": "Cuero sintético de alta resistencia.",
+    "code": "SILL001",
+    "price": 210000,
+    "status": true,
+    "stock": 4,
+    "category": "Muebles",
+    "thumbnails": [
+      "silla_gaming.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Webcam 4K Pro",
+    "description": "Lente de cristal y doble micrófono.",
+    "code": "CAM001",
+    "price": 42000,
+    "status": true,
+    "stock": 18,
+    "category": "Periféricos",
+    "thumbnails": [
+      "webcam_4k.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Microfóno USB",
+    "description": "Soporte antivibración incluido.",
+    "code": "MIC001",
+    "price": 38500,
+    "status": true,
+    "stock": 9,
+    "category": "Audio",
+    "thumbnails": [
+      "microfono.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Motherboard B550",
+    "description": "Dual M.2 y soporte para WiFi 6.",
+    "code": "MOT001",
+    "price": 115000,
+    "status": true,
+    "stock": 7,
+    "category": "Componentes",
+    "thumbnails": [
+      "mother_b550.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Mousepad XL",
+    "description": "Base de goma antideslizante 900x400mm.",
+    "code": "PAD001",
+    "price": 12000,
+    "status": true,
+    "stock": 30,
+    "category": "Periféricos",
+    "thumbnails": [
+      "mousepad.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Joystick Wireless",
+    "description": "Compatible con PC y Consolas.",
+    "code": "JOY001",
+    "price": 45000,
+    "status": true,
+    "stock": 12,
+    "category": "Accesorios",
+    "thumbnails": [
+      "joystick.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Router WiFi 6",
+    "description": "Doble banda con 4 antenas externas.",
+    "code": "NET001",
+    "price": 68000,
+    "status": true,
+    "stock": 10,
+    "category": "Redes",
+    "thumbnails": [
+      "router_ax.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Disco Rígido 2TB",
+    "description": "7200 RPM para almacenamiento masivo.",
+    "code": "HDD001",
+    "price": 52000,
+    "status": true,
+    "stock": 20,
+    "category": "Almacenamiento",
+    "thumbnails": [
+      "hdd_2tb.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Pasta Térmica Pro",
+    "description": "Conductividad térmica de 8.5 W/mK.",
+    "code": "ACC001",
+    "price": 8500,
+    "status": true,
+    "stock": 50,
+    "category": "Accesorios",
+    "thumbnails": [
+      "thermal_paste.jpg"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Parlantes 2.1 BT",
+    "description": "Subwoofer de madera y conexión Bluetooth.",
+    "code": "AUD002",
+    "price": 49000,
+    "status": true,
+    "stock": 6,
+    "category": "Audio",
+    "thumbnails": [
+      "parlantes_21.jpg"
     ]
   }
 ]

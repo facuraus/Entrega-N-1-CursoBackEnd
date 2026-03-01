@@ -1,4 +1,4 @@
-const CartManager = require('./manager/cartManager');
+const CartManager = require('./manager/CartManager');
 const manager = new CartManager('carts.json');
 
 

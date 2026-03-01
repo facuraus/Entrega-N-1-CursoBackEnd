@@ -15,17 +15,17 @@ router.get('/', async (req, res) => {
 });
 
 // Get/api/products/:pid
-router.get('/:pid', async (req,res) =>{
-    try{
-    const {pid} = req.params;
-    const producto = await productManager.getProductById(pid);
+router.get('/:pid', async (req, res) => {
+    try {
+        const { pid } = req.params;
+        const producto = await productManager.getProductById(pid);
 
-    if(!producto){
-        return res.status(404).json({ status: "error", message: "Producto no encontrado" });    
-    }
+        if (!producto) {
+            return res.status(404).json({ status: "error", message: "Producto no encontrado" });
+        }
 
-    res.json({ status: "success", payload: producto });
-    }catch (error){
+        res.json({ status: "success", payload: producto });
+    } catch (error) {
         res.status(500).json({ status: "error", message: "Error al buscar el producto" });
     }
 });
@@ -49,39 +49,45 @@ router.post('/', async (req, res) => {
             thumbnails: thumbnails || []
         });
 
+        //  WEBSOCKET
+
+        const io = req.app.get('socketio');
+        const updatedProducts = await productManager.getProducts();
+        io.emit('updateProducts', updatedProducts);
+
         res.status(201).json({ status: "success", data: nuevoProducto });
     } catch (error) {
         res.status(500).json({ status: "error", message: "Error interno del servidor" });
     }
 });
 
-router.put("/:pid", async (req,res)=>{
-    try{
-        const {pid} = req.params;
-        const datosDelBody= req.body;
+router.put("/:pid", async (req, res) => {
+    try {
+        const { pid } = req.params;
+        const datosDelBody = req.body;
 
         const productoActualizado = await productManager.updateProduct(pid, datosDelBody);
 
         if (!productoActualizado) {
-            return res.status(404).json({ 
-                status: "error", 
-                message: "Producto no encontrado" 
+            return res.status(404).json({
+                status: "error",
+                message: "Producto no encontrado"
             });
         }
 
         // Si todo salió bien, respondemos con el producto ya cambiado
-        res.json({ 
-            status: "success", 
-            message: "Producto actualizado", 
-            payload: productoActualizado 
+        res.json({
+            status: "success",
+            message: "Producto actualizado",
+            payload: productoActualizado
         });
-        
 
-    }catch (error) {
+
+    } catch (error) {
         console.error("Error: ", error);
-        res.status(500).json({ 
-            status: "error", 
-            message: "Error interno al actualizar el producto"  
+        res.status(500).json({
+            status: "error",
+            message: "Error interno al actualizar el producto"
         });
     }
 })
@@ -94,21 +100,26 @@ router.delete('/:pid', async (req, res) => {
         const resultado = await productManager.deleteProduct(pid);
 
         if (!resultado) {
-            return res.status(404).json({ 
-                status: "error", 
-                message: "No se pudo eliminar: Producto no encontrado" 
+            return res.status(404).json({
+                status: "error",
+                message: "No se pudo eliminar: Producto no encontrado"
             });
         }
 
-        res.json({ 
-            status: "success", 
-            message: `Producto con ID ${pid} eliminado correctamente` 
+        // websocket
+        const io = req.app.get('socketio');
+        const updatedProducts = await productManager.getProducts();
+        io.emit('updateProducts', updatedProducts);
+
+        res.json({
+            status: "success",
+            message: `Producto con ID ${pid} eliminado correctamente`
         });
 
     } catch (error) {
-        res.status(500).json({ 
-            status: "error", 
-            message: "Error interno al eliminar el producto" 
+        res.status(500).json({
+            status: "error",
+            message: "Error interno al eliminar el producto"
         });
     }
 });

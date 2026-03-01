@@ -1,0 +1,25 @@
+<h1 class="text-center mb-4">Catálogo de Productos</h1>
+
+<div class="row">
+    {{#each productos}}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="/img/{{this.thumbnails.[0]}}" 
+                 class="card-img-top" 
+                 alt="{{this.title}}"
+                 style="height: 200px; object-fit: contain; background: #f8f9fa;">
+            
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text text-muted small">{{this.description}}</p>
+                <p class="fw-bold text-primary fs-5">${{this.price}}</p>
+            </div>
+            
+            {{#if ../realTime}} <div class="card-footer">
+                <button class="btn btn-danger btn-sm w-100" onclick="deleteProduct('{{this.id}}')">Eliminar</button>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+</div>
