@@ -1,62 +1,32 @@
 const fs = require('fs/promises');
 const path = require('path');
+const productModel = require('../models/product.model.js');
 
 class ProductManager {
-
-    static idCounter = 0;
-
-    constructor(filePath) {
-        this.path = path.resolve(__dirname, '..', 'data', filePath);
-    }
+    constructor() { }
 
     async getProducts() {
         try {
-            const data = await fs.readFile(this.path, 'utf-8');
-            return JSON.parse(data);
+            return await productModel.find().lean();
         } catch (error) {
+            console.error("Error al obtener productos:", error);
             return [];
         }
     }
 
     async getProductById(id) {
         try {
-            const productos = await this.getProducts();
-
-            const producto = productos.find(p => p.id === Number(id))
-            return producto
-        } catch {
+            return await productModel.findById(id).lean();
+        } catch (error) {
             console.error("Error al buscar el producto por ID", error);
-            throw error;
+            return null;
         }
     }
 
     async addProduct(productData) {
         try {
-            const products = await this.getProducts();
-
-            // Sincronizamos el contador estático con el ID más alto existente
-            if (products.length > 0 && ProductManager.idCounter === 0) {
-                console.log("BUSCO EL ID MAS GRANDE")
-                console.log(...products.map(p => p.id))
-
-                const maxId = Math.max(...products.map(p => p.id));
-                ProductManager.idCounter = maxId;
-            }
-
-            ProductManager.idCounter++;
-
-            const newProduct = {
-                id: ProductManager.idCounter,
-                ...productData,
-                status: true
-            };
-
-            products.push(newProduct);
-
-            // Guardamos en el archivo
-            await fs.writeFile(this.path, JSON.stringify(products, null, 2));
+            const newProduct = await productModel.create(productData);
             return newProduct;
-
         } catch (error) {
             console.error("Error al agregar producto", error);
             throw error;
@@ -65,37 +35,13 @@ class ProductManager {
 
     async updateProduct(id, datosActualizados) {
         try {
-            const products = await this.getProducts();
-
-            //BUSCO LA POSICION
-            const pos = products.findIndex(p => p.id === Number(id));
-            console.log(`\n --- EL PRODUCTO CON ID:${id} ES ---`)
-            console.log(products[pos]);
-
-            if (pos === -1) return null;
-
-            const productoOriginal = products[pos];
-
-
-            //REMPLAZO LOS DATOS QUE COINCIDEN
-            console.log("\n --- LOS DATOS DEL BODY SON: ---");
-            console.log(datosActualizados);
-
-            const productoActualizado = {
-                ...productoOriginal,
-                ...datosActualizados,
-                id: productoOriginal.id
-            }
-
-            console.log("\n --- EL PRODUCTO ACTUALIZADO QUEDO COMO: ---");
-            console.log(productoActualizado);
-
-            products[pos] = productoActualizado
-
-            await fs.writeFile(this.path, JSON.stringify(products, null, 2));
-
-            return products[pos];
-
+            // { new: true } hace que devuelva el producto ya modificado
+            const updatedProduct = await productModel.findByIdAndUpdate(
+                id,
+                datosActualizados,
+                { new: true }
+            ).lean();
+            return updatedProduct;
         } catch (error) {
             console.error("Error al actualizar:", error);
             throw error;
@@ -104,31 +50,13 @@ class ProductManager {
 
     async deleteProduct(id) {
         try {
-            console.log("\n--- ANTES DEL DELETE ---")
-            const products = await this.getProducts();
-            console.log(products)
-
-            //veo si existe el prducto 
-            //some() == alguno      
-            const existe = products.some(p => p.id === Number(id));
-            if (!existe) return false;
-
-            //filter() crea un nuevo array con todos los elementos que cumplan la condición
-            const productosFiltrado = products.filter(p => p.id !== Number(id));
-
-            await fs.writeFile(this.path, JSON.stringify(productosFiltrado, null, 2));
-
-            console.log("\n--- DESPUES DEL DELETE ---")
-            console.log(productosFiltrado)
-
-            return true;
-        }catch (error) {
+            const result = await productModel.findByIdAndDelete(id);
+            return result !== null;
+        } catch (error) {
             console.error("Error al eliminar el producto", error);
             throw error;
         }
-
     }
-
 }
 
 module.exports = ProductManager;

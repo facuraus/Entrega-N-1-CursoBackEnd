@@ -1,0 +1,92 @@
+/* src/public/css/styles.css */
+
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tarjetas de productos */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Contenedor de imagen en la card */
+.card img {
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Panel de Formulario (Sticky) */
+.sticky-top {
+    z-index: 1020;
+}
+
+#productForm {
+    background: white;
+}
+
+/* Estilo para los inputs al hacer focus */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Botón de eliminar con diseño mini */
+.btn-danger.btn-sm {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Scrollbar personalizado para el listado */
+#productsContainer {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Personalización del scrollbar (Chrome/Edge/Safari) */
+#productsContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+#productsContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#productsContainer::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+#productsContainer::-webkit-scrollbar-thumb:hover {
+    background: #0a58ca;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+#cartButton {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#cartCount {
+    font-size: 0.7rem;
+    padding: 0.35em 0.65em;
+}

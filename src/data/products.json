@@ -1,262 +1,182 @@
 [
-    {
-    "id": 1,
+  {
     "title": "Teclado Mecánico RGB",
-    "description": "Switches Red, retroiluminación personalizada y layout español.",
-    "code": "TEC001",
+    "description": "Teclado de alto rendimiento con switches mecánicos Red (lineales) para una respuesta rápida. Incluye retroiluminación RGB totalmente personalizable mediante software, layout en español y cable trenzado reforzado para mayor durabilidad.",
     "price": 45000,
     "status": true,
     "stock": 15,
     "category": "Periféricos",
-    "thumbnails": [
-      "teclado_rgb_1.jpg"
-    ]
+    "thumbnails": ["teclado_rgb_1.jpg"]
   },
   {
-    "id": 2,
     "title": "Mouse Gamer Pro",
-    "description": "16000 DPI, inalámbrico con sensor óptico.",
-    "code": "MOU001",
+    "description": "Mouse inalámbrico de precisión extrema con sensor óptico de 16000 DPI. Cuenta con diseño ergonómico para largas sesiones de juego, botones programables, tecnología de baja latencia y batería de larga duración.",
     "price": 32000,
     "status": true,
     "stock": 20,
     "category": "Periféricos",
-    "thumbnails": [
-      "mouse1.jpg"
-    ]
+    "thumbnails": ["mouse1.jpg"]
   },
   {
-    "id": 3,
     "title": "Monitor 24' 144Hz",
-    "description": "Panel IPS, Full HD con FreeSync.",
-    "code": "MON001",
+    "description": "Monitor gamer con panel IPS que ofrece colores vibrantes y ángulos de visión amplios. Resolución Full HD con tasa de refresco de 144Hz y tecnología FreeSync para eliminar el desgarro de imagen (tearing) y asegurar una fluidez total.",
     "price": 185000,
     "status": true,
     "stock": 8,
     "category": "Monitores",
-    "thumbnails": [
-      "monitor_24.png"
-    ]
+    "thumbnails": ["monitor_24.png"]
   },
   {
-    "id": 4,
     "title": "Auriculares 7.1",
-    "description": "Cancelación de ruido, micrófono cardioide.",
-    "code": "AUR001",
+    "description": "Auriculares con sonido envolvente virtual 7.1 para una experiencia inmersiva. Equipados con cancelación de ruido pasiva, micrófono cardioide ajustable de alta claridad y almohadillas de memory foam para máximo confort.",
     "price": 28000,
     "status": true,
     "stock": 12,
     "category": "Audio",
-    "thumbnails": [
-      "aur.png"
-    ]
+    "thumbnails": ["aur.png"]
   },
   {
-    "id": 5,
     "title": "Placa de Video RTX 4060",
-    "description": "8GB GDDR6, trazado de rayos de 3ra gen.",
-    "code": "GPU001",
+    "description": "Placa de video de última generación con 8GB de memoria GDDR6. Soporta trazado de rayos (Ray Tracing) de tercera generación y tecnología DLSS 3.0 para maximizar los FPS en los juegos más exigentes a resolución 1080p y 1440p.",
     "price": 450000,
     "status": true,
     "stock": 5,
     "category": "Componentes",
-    "thumbnails": [
-      "gpu_4060.jpg"
-    ]
+    "thumbnails": ["gpu_4060.jpg"]
   },
   {
-    "id": 6,
     "title": "Memoria RAM 16GB DDR4",
-    "description": "3200MHz con iluminación RGB controlable.",
-    "code": "RAM001",
+    "description": "Módulo de memoria RAM de alto rendimiento a 3200MHz. Diseñada para entusiastas, incluye un disipador de calor de aluminio y barra de iluminación RGB controlable compatible con las principales marcas de motherboards.",
     "price": 45000,
     "status": true,
     "stock": 25,
     "category": "Componentes",
-    "thumbnails": [
-      "ram_rgb.jpg"
-    ]
+    "thumbnails": ["ram_rgb.jpg"]
   },
   {
-    "id": 7,
     "title": "SSD NVMe 1TB",
-    "description": "PCIe Gen4 x4 de alta velocidad.",
-    "code": "SSD001",
+    "description": "Unidad de estado sólido de alta velocidad con interfaz PCIe Gen4 x4. Ofrece velocidades de lectura y escritura drásticamente superiores a los SSD SATA tradicionales, reduciendo tiempos de carga en juegos y aplicaciones pesadas.",
     "price": 72000,
     "status": true,
     "stock": 15,
     "category": "Almacenamiento",
-    "thumbnails": [
-      "ssd_m2.jpg"
-    ]
+    "thumbnails": ["ssd_m2.jpg"]
   },
   {
-    "id": 8,
     "title": "Procesador i5-13400",
-    "description": "10 núcleos, ideal para multitarea.",
-    "code": "CPU001",
+    "description": "Procesador de 13ª generación con 10 núcleos (6 de rendimiento y 4 de eficiencia) y 16 hilos. Excelente equilibrio para gaming y productividad multitarea, con frecuencias turbo que garantizan un desempeño ágil.",
     "price": 310000,
     "status": true,
     "stock": 10,
     "category": "Componentes",
-    "thumbnails": [
-      "cpu_i5.jpg"
-    ]
+    "thumbnails": ["cpu_i5.jpg"]
   },
   {
-    "id": 9,
     "title": "Gabinete Mid-Tower",
-    "description": "Vidrio templado y flujo de aire optimizado.",
-    "code": "GAB001",
+    "description": "Gabinete con panel lateral de vidrio templado y estructura optimizada para un flujo de aire superior. Incluye filtros antipolvo magnéticos, amplio espacio para gestión de cables y soporte para múltiples ventiladores o radiadores.",
     "price": 55000,
     "status": true,
     "stock": 6,
     "category": "Componentes",
-    "thumbnails": [
-      "gabinete_atx.jpg"
-    ]
+    "thumbnails": ["gabinete_atx.jpg"]
   },
   {
-    "id": 10,
     "title": "Fuente 750W 80+ Gold",
-    "description": "Protección de sobretensión y modular.",
-    "code": "POW001",
+    "description": "Fuente de alimentación modular con certificación 80 Plus Gold, lo que garantiza una eficiencia energética superior al 90%. Incluye protecciones integrales de voltaje y ventilador silencioso de alta calidad.",
     "price": 95000,
     "status": true,
     "stock": 14,
     "category": "Componentes",
-    "thumbnails": [
-      "psu_750.jpg"
-    ]
+    "thumbnails": ["psu_750.jpg"]
   },
   {
-    "id": 11,
     "title": "Silla Gamer Ergo",
-    "description": "Cuero sintético de alta resistencia.",
-    "code": "SILL001",
+    "description": "Silla ergonómica diseñada para largas jornadas frente a la PC. Tapizada en cuero sintético de alta resistencia, cuenta con altura regulable, función de reclinación, apoyabrazos ajustables y soporte lumbar/cervical incluido.",
     "price": 210000,
     "status": true,
     "stock": 4,
     "category": "Muebles",
-    "thumbnails": [
-      "silla_gaming.jpg"
-    ]
+    "thumbnails": ["silla_gaming.jpg"]
   },
   {
-    "id": 12,
     "title": "Webcam 4K Pro",
-    "description": "Lente de cristal y doble micrófono.",
-    "code": "CAM001",
+    "description": "Cámara web con resolución Ultra HD 4K ideal para streaming y videoconferencias profesionales. Posee lente de cristal de alta precisión, corrección automática de luz y doble micrófono con reducción de ruido ambiental.",
     "price": 42000,
     "status": true,
     "stock": 18,
     "category": "Periféricos",
-    "thumbnails": [
-      "webcam_4k.jpg"
-    ]
+    "thumbnails": ["webcam_4k.jpg"]
   },
   {
-    "id": 13,
     "title": "Microfóno USB",
-    "description": "Soporte antivibración incluido.",
-    "code": "MIC001",
+    "description": "Micrófono de condensador con conexión USB plug-and-play. Patrón de captación cardioide que aisla la voz del ruido de fondo, ideal para podcast y streaming. Incluye soporte antivibración (shock mount) y trípode de mesa.",
     "price": 38500,
     "status": true,
     "stock": 9,
     "category": "Audio",
-    "thumbnails": [
-      "microfono.jpg"
-    ]
+    "thumbnails": ["microfono.jpg"]
   },
   {
-    "id": 14,
     "title": "Motherboard B550",
-    "description": "Dual M.2 y soporte para WiFi 6.",
-    "code": "MOT001",
+    "description": "Placa base con chipset B550 preparada para procesadores AMD Ryzen. Cuenta con doble ranura M.2, soporte para PCIe 4.0, disipadores de calor integrados en las fases de poder y conectividad WiFi 6 de alta velocidad.",
     "price": 115000,
     "status": true,
     "stock": 7,
     "category": "Componentes",
-    "thumbnails": [
-      "mother_b550.jpg"
-    ]
+    "thumbnails": ["mother_b550.jpg"]
   },
   {
-    "id": 15,
     "title": "Mousepad XL",
-    "description": "Base de goma antideslizante 900x400mm.",
-    "code": "PAD001",
+    "description": "Superficie de tela de microfibra de gran tamaño (900x400mm) que permite cubrir escritorio para teclado y mouse. Bordes reforzados con costura y base de goma antideslizante para un control preciso del sensor.",
     "price": 12000,
     "status": true,
-    "stock": 30,
+    "stock": 0,
     "category": "Periféricos",
-    "thumbnails": [
-      "mousepad.jpg"
-    ]
+    "thumbnails": ["mousepad.jpg"]
   },
   {
-    "id": 16,
     "title": "Joystick Wireless",
-    "description": "Compatible con PC y Consolas.",
-    "code": "JOY001",
+    "description": "Control inalámbrico multiplataforma compatible con PC, Android y consolas de última generación. Posee motores de vibración dual, gatillos de precisión y diseño ergonómico con agarre antideslizante.",
     "price": 45000,
     "status": true,
-    "stock": 12,
+    "stock": 2,
     "category": "Accesorios",
-    "thumbnails": [
-      "joystick.jpg"
-    ]
+    "thumbnails": ["joystick.jpg"]
   },
   {
-    "id": 17,
     "title": "Router WiFi 6",
-    "description": "Doble banda con 4 antenas externas.",
-    "code": "NET001",
+    "description": "Router de alta velocidad con tecnología WiFi 6 de doble banda. Equipado con 4 antenas externas de alta ganancia para maximizar la cobertura, permitiendo conectar múltiples dispositivos simultáneamente sin pérdida de velocidad.",
     "price": 68000,
     "status": true,
-    "stock": 10,
+    "stock": 4,
     "category": "Redes",
-    "thumbnails": [
-      "router_ax.jpg"
-    ]
+    "thumbnails": ["router_ax.jpg"]
   },
   {
-    "id": 18,
     "title": "Disco Rígido 2TB",
-    "description": "7200 RPM para almacenamiento masivo.",
-    "code": "HDD001",
+    "description": "Unidad de disco rígido interno de 2TB de capacidad. Velocidad de rotación de 7200 RPM y amplia memoria caché, diseñado para almacenamiento masivo de archivos, juegos y copias de seguridad de larga duración.",
     "price": 52000,
     "status": true,
-    "stock": 20,
+    "stock": 1,
     "category": "Almacenamiento",
-    "thumbnails": [
-      "hdd_2tb.jpg"
-    ]
+    "thumbnails": ["hdd_2tb.jpg"]
   },
   {
-    "id": 19,
     "title": "Pasta Térmica Pro",
-    "description": "Conductividad térmica de 8.5 W/mK.",
-    "code": "ACC001",
+    "description": "Compuesto térmico de alta calidad con conductividad de 8.5 W/mK. No conductora de electricidad, fácil de aplicar y diseñada para mejorar la transferencia de calor entre el procesador y el disipador.",
     "price": 8500,
     "status": true,
-    "stock": 50,
+    "stock": 14,
     "category": "Accesorios",
-    "thumbnails": [
-      "thermal_paste.jpg"
-    ]
+    "thumbnails": ["thermal_paste.jpg"]
   },
   {
-    "id": 20,
     "title": "Parlantes 2.1 BT",
-    "description": "Subwoofer de madera y conexión Bluetooth.",
-    "code": "AUD002",
+    "description": "Sistema de audio 2.1 con subwoofer construido en madera para graves profundos y potentes. Ofrece conectividad Bluetooth para dispositivos móviles y entrada auxiliar, con control remoto para ajuste de volumen y bajos.",
     "price": 49000,
     "status": true,
-    "stock": 6,
+    "stock": 0,
     "category": "Audio",
-    "thumbnails": [
-      "parlantes_21.jpg"
-    ]
+    "thumbnails": ["parlantes_21.jpg"]
   }
 ]

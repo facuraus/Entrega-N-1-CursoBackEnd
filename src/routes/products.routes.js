@@ -1,16 +1,61 @@
 const express = require('express');
 const router = express.Router();
 const ProductManager = require('../manager/ProductManager');
+const productModel = require('../models/product.model');
+const multer = require('multer');
+const path = require('path');
 
-const productManager = new ProductManager('products.json');
+const productManager = new ProductManager();
 
 // GET /api/products/
 router.get('/', async (req, res) => {
     try {
-        const products = await productManager.getProducts();
-        res.json({ status: "success", payload: products });
+
+        let { limit = 10, page = 1, sort, query, status, category, title } = req.query;
+
+        const filter = {};
+
+        if (query) {
+            filter.$or = [
+                { category: { $regex: query, $options: 'i' } },
+                { title: { $regex: query, $options: 'i' } }
+            ];
+        }
+
+        if (status === 'true') filter.stock = { $gt: 0 };
+        if (category) filter.category = { $in: category.split(',') };
+        if (title) filter.title = { $regex: title, $options: 'i' };
+
+        const options = {
+            limit: parseInt(limit),
+            page: parseInt(page),
+            lean: true,
+            sort: sort ? { price: sort === 'asc' ? 1 : -1 } : {}
+        };
+
+        const result = await productModel.paginate(filter, options);
+
+        const baseUrl = `/api/products?limit=${limit}&sort=${sort || ''}&query=${query || ''}&status=${status || ''}&category=${category || ''}&title=${title || ''}`;
+
+        res.json({
+            status: "success",
+            payload: result.docs,
+            totalPages: result.totalPages,
+            prevPage: result.prevPage,
+            nextPage: result.nextPage,
+            page: result.page,
+            hasPrevPage: result.hasPrevPage,
+            hasNextPage: result.hasNextPage,
+            prevLink: result.hasPrevPage ? `${baseUrl}&page=${result.prevPage}` : null,
+            nextLink: result.hasNextPage ? `${baseUrl}&page=${result.nextPage}` : null
+        });
+
     } catch (error) {
-        res.status(500).json({ status: "error", message: "Error al obtener los productos" });
+        console.error("Error en GET /api/products:", error);
+        res.status(500).json({
+            status: "error", // <-- SIEMPRE 'error' en el catch
+            message: error.message
+        });
     }
 });
 
@@ -30,34 +75,54 @@ router.get('/:pid', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    try {
-        const { title, description, code, price, stock, category, thumbnails } = req.body;
+// Configuración Multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../assets/img'));
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    }
+});
+const upload = multer({ storage });
 
-        // Validación básica de campos obligatorios
+// POST /api/products 
+router.post('/', upload.single('image'), async (req, res) => {
+    try {
+        const { title, description, code, price, stock, category } = req.body;
+
+        // Validamos que los campos requeridos por el Schema estén presentes
         if (!title || !description || !code || !price || !stock || !category) {
             return res.status(400).json({ status: "error", message: "Faltan campos obligatorios" });
         }
+
+        const imageName = req.file ? req.file.filename : 'default.png';
 
         const nuevoProducto = await productManager.addProduct({
             title,
             description,
             code,
-            price,
-            stock,
+            price: Number(price),
+            stock: Number(stock),
             category,
-            thumbnails: thumbnails || []
+            thumbnails: [imageName],
+            status: true
         });
-
-        //  WEBSOCKET
 
         const io = req.app.get('socketio');
         const updatedProducts = await productManager.getProducts();
         io.emit('updateProducts', updatedProducts);
 
-        res.status(201).json({ status: "success", data: nuevoProducto });
+        res.status(201).json({ status: "success", payload: nuevoProducto });
     } catch (error) {
-        res.status(500).json({ status: "error", message: "Error interno del servidor" });
+        console.error("Error al crear producto:", error);
+
+        // Manejo específico para códigos duplicados (error 11000 de Mongo)
+        if (error.code === 11000) {
+            return res.status(400).json({ status: "error", message: `El código "${req.body.code}" ya existe.` });
+        }
+
+        res.status(500).json({ status: "error", message: error.message });
     }
 });
 
@@ -75,7 +140,6 @@ router.put("/:pid", async (req, res) => {
             });
         }
 
-        // Si todo salió bien, respondemos con el producto ya cambiado
         res.json({
             status: "success",
             message: "Producto actualizado",
@@ -106,7 +170,6 @@ router.delete('/:pid', async (req, res) => {
             });
         }
 
-        // websocket
         const io = req.app.get('socketio');
         const updatedProducts = await productManager.getProducts();
         io.emit('updateProducts', updatedProducts);

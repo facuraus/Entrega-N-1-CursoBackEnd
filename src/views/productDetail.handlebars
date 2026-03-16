@@ -1,0 +1,103 @@
+<div class="container mt-5">
+    <div class="row bg-white p-4 shadow-sm rounded">
+        <div class="col-md-6 text-center">
+            {{#if producto.thumbnails.[0]}}
+            <img src="/assets/img/{{producto.thumbnails.[0]}}" class="img-fluid rounded" style="max-height: 400px;">
+            {{else}}
+            <img src="https://via.placeholder.com/400x400?text=Sin+Imagen" class="img-fluid rounded"
+                style="max-height: 400px;">
+            {{/if}}
+        </div>
+        <div class="col-md-6">
+            <span class="badge bg-info mb-2">{{producto.category}}</span>
+            <h1 class="fw-bold">{{producto.title}}</h1>
+            <hr>
+            <h3 class="text-success fw-bold">${{producto.price}}</h3>
+            <p class="mt-4">{{producto.description}}</p>
+            <p class="mt-2">
+                <strong>Disponibilidad:</strong>
+                {{#if (gt producto.stock 0)}}
+                <span class="text-success">En stock ({{producto.stock}} unidades)</span>
+                {{else}}
+                <span class="text-danger fw-bold">Agotado</span>
+                {{/if}}
+            </p>
+
+            <button class="btn btn-primary btn-lg w-100 mt-4" onclick="addToCart('{{producto._id}}')" {{#if (lte
+                producto.stock 0)}}disabled{{/if}}>
+                <i class="fas fa-cart-plus me-2"></i>
+                {{#if (gt producto.stock 0)}}
+                Añadir al carrito
+                {{else}}
+                Sin stock disponible
+                {{/if}}
+            </button>
+            <a href="/products" class="btn btn-link w-100 mt-2 text-decoration-none text-muted">Volver al catálogo</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function createCart() {
+        try {
+            const response = await fetch('/api/carts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+            if (data.status === "success") {
+                localStorage.setItem('cartId', data.payload._id);
+                return data.payload._id;
+            }
+        } catch (error) {
+            console.error("Error al crear carrito:", error);
+        }
+    }
+
+    async function addToCart(productId) {
+        let cartId = localStorage.getItem('cartId');
+
+        try {
+            if (!cartId || cartId === "undefined") {
+                cartId = await createCart();
+            }
+
+            let res = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            // Si el carrito expiró o no existe en DB
+            if (res.status === 404) {
+                cartId = await createCart();
+                res = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+
+            if (res.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Producto añadido!',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                // Actualizamos el contador del Navbar 
+                if (typeof updateGlobalCartCounter === 'function') {
+                    updateGlobalCartCounter();
+                }
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo añadir al carrito'
+            });
+        }
+    }
+</script>

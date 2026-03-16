@@ -1,26 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi E-Commerce</title>
+    <title>Mi E-Commerce - MongoDB</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-dark bg-dark mb-4">
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="/">Mi E-Commerce</a>
-            <div>
-                <a href="/" class="btn btn-outline-light btn-sm">Home</a>
-                <a href="/realtimeproducts" class="btn btn-outline-info btn-sm">Real Time</a>
+            <a class="navbar-brand fw-bold text-primary" href="/">
+                <i class="fas fa-store me-2"></i>Mi E-Commerce
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/realtimeproducts" class="nav-link text-info"><i class="fas fa-bolt"></i> Real Time</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="javascript:void(0)" onclick="goToCart()" class="btn btn-primary position-relative"
+                            id="cartButton">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                id="cartCount" style="display: none;">0</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container flex-grow-1">
         {{{body}}}
     </main>
 
+    <footer class="bg-white text-center py-3 mt-5 border-top">
+        <p class="text-muted mb-0">&copy; 2026 Mi E-Commerce</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // 1. Función para actualizar el contador del Navbar
+        async function updateGlobalCartCounter() {
+            const cartId = localStorage.getItem('cartId');
+            if (!cartId || cartId === "undefined") return;
+
+            try {
+                const res = await fetch(`/api/carts/${cartId}`);
+                if (!res.ok) return;
+                const data = await res.json();
+
+                if (data.status === "success" && data.payload.products) {
+                    const totalItems = data.payload.products.reduce((acc, item) => acc + (item.quantity || 0), 0);
+                    const badge = document.getElementById('cartCount');
+
+                    if (totalItems > 0) {
+                        badge.innerText = totalItems;
+                        badge.style.display = 'block';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error("Error actualizando contador navbar:", error);
+            }
+        }
+
+        // 2. Función para ir al carrito
+        function goToCart() {
+            const cartId = localStorage.getItem('cartId');
+            if (cartId && cartId !== "undefined") {
+                window.location.href = `/carts/${cartId}`;
+            } else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Carrito vacío',
+                    text: 'Agrega productos para poder ver tu carrito.'
+                });
+            }
+        }
+
+        // 3. Lógica del Filtro 
+        const filterForm = document.getElementById('filterForm');
+        if (filterForm) {
+            filterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const query = document.getElementById('queryInput').value;
+                const sort = document.getElementById('sortSelect').value;
+                let url = `/products?page=1`; 
+                if (query) url += `&query=${query}`;
+                if (sort) url += `&sort=${sort}`;
+                window.location.href = url;
+            });
+        }
+
+        // Ejecutar contador al cargar cualquier página
+        document.addEventListener('DOMContentLoaded', updateGlobalCartCounter);
+    </script>
 </body>
+
 </html>

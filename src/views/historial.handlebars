@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-history text-success"></i> Historial de Compras</h1>
+        <a href="/products" class="btn btn-outline-primary">
+            <i class="fas fa-store"></i> Volver a la Tienda
+        </a>
+    </div>
+
+    {{#if tickets.length}}
+        <div class="row">
+            {{#each tickets}}
+            <div class="col-12 mb-4">
+                <div class="card shadow-sm border-0 border-start border-success border-5">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <div>
+                            <span class="text-muted small uppercase">Código de Boleta</span>
+                            <h5 class="mb-0 text-primary">{{this.codigo}}</h5>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-light text-dark border">{{this.fecha_compra}}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle">
+                                <thead>
+                                    <tr class="text-muted">
+                                        <th>Producto</th>
+                                        <th class="text-center">Cant.</th>
+                                        <th class="text-end">Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each this.productos_comprados}}
+                                    <tr>
+                                        <td>{{this.titulo}}</td>
+                                        <td class="text-center">{{this.cantidad}}</td>
+                                        <td class="text-end">${{this.precio}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Estado: <span class="badge bg-success-subtle text-success">Completado</span></span>
+                            <div class="text-end">
+                                <span class="fs-5 text-muted">Total Pagado: </span>
+                                <span class="fs-3 fw-bold text-success">${{this.monto_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-file-invoice-dollar fa-4x text-muted mb-3 opacity-25"></i>
+                <p class="fs-4 text-muted">Aún no has realizado ninguna compra.</p>
+                <a href="/products" class="btn btn-primary btn-lg">Empezar a comprar</a>
+            </div>
+        </div>
+    {{/if}}
+</div>

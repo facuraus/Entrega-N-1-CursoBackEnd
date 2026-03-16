@@ -1,0 +1,23 @@
+<div class="row mb-5 justify-content-center">
+    <div class="col-md-8">
+        <div class="d-flex gap-2 position-relative">
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white border-end-0">
+                    <i class="fas fa-search text-muted"></i>
+                </span>
+                <input type="text" class="form-control border-start-0" id="mainSearchInput" 
+                       placeholder="Busca productos (ej: Teclado, Monitor...)" autocomplete="off">
+                <button class="btn btn-primary px-4 fw-bold" onclick="executeSearch()">Buscar</button>
+            </div>
+            
+            <button class="btn btn-outline-dark d-flex align-items-center gap-2 shadow-sm fw-bold" 
+                    type="button" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar">
+                <i class="fas fa-sliders-h"></i> <span>Filtros</span>
+            </button>
+
+            <div id="liveSearchResults" class="list-group position-absolute w-100 shadow-lg mt-1 d-none" 
+                 style="top: 100%; z-index: 1000; max-height: 400px; overflow-y: auto;">
+            </div>
+        </div>
+    </div>
+</div>

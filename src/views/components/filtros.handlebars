@@ -1,0 +1,79 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="filterSidebar">
+    <div class="offcanvas-header border-bottom bg-light">
+        <h5 class="offcanvas-title fw-bold">
+            <i class="fas fa-filter text-primary me-2"></i>Opciones de Filtro
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form id="advancedFilterForm">
+            <div class="mb-4 border-bottom pb-3">
+                <label class="form-label fw-bold text-secondary small mb-3">ORDENAR PRECIO</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortOrder" id="sortAsc" value="asc">
+                    <label class="form-check-label" for="sortAsc">Menor a Mayor</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortOrder" id="sortDesc" value="desc">
+                    <label class="form-check-label" for="sortDesc">Mayor a Menor</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold text-secondary small mb-3">CATEGORÍAS</label>
+                <div id="categoriesList">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Celulares" id="catCel">
+                        <label class="form-check-labe" for="catCel">Celulares</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Accesorios" id="catAcc">
+                        <label class="form-check-label" for="catAcc">Accesorios</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Almacenamiento"
+                            id="catAlm">
+                        <label class="form-check-label" for="catAlm">Almacenamiento</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Audio" id="catAud">
+                        <label class="form-check-label" for="catAud">Audio</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Componentes" id="catCom">
+                        <label class="form-check-label" for="catCom">Componentes</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Monitores" id="catMon">
+                        <label class="form-check-label" for="catMon">Monitores</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Muebles" id="catMue">
+                        <label class="form-check-label" for="catMue">Muebles</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Periféricos" id="catPer">
+                        <label class="form-check-label" for="catPer">Periféricos</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input category-check" type="checkbox" value="Redes" id="catRed">
+                        <label class="form-check-label" for="catRed">Redes</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 border-bottom pb-3">
+                <label class="form-label fw-bold text-secondary small mb-3">DISPONIBILIDAD</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="stockFilter" value="true">
+                    <label class="form-check-label" for="stockFilter">Solo en stock</label>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-5">
+                <button type="submit" class="btn btn-primary fw-bold py-2">Aplicar Filtros</button>
+                <button type="button" class="btn btn-light border py-2" onclick="clearFilters()">Limpiar Todo</button>
+            </div>
+        </form>
+    </div>
+</div>
